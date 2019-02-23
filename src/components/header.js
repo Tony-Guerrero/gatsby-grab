@@ -1,42 +1,88 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import gatsbyLogo from '../images/gatsby-icon.png';
+
+/**
+ * TG. There is not react's NavLink in gatsby, just Link, so we created it.
+ *  We pass it down all its props.
+ */
+const NavLink = props => <Link getProps={isActive} {...props} />;
+
+const isActive = ({ isCurrent }) => {
+  return { className: isCurrent ? 'active' : 'navlink' }; // TG. We defined them in layout.css
+};
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
+      marginBottom: `1.45rem`
     }}
   >
+    {/* Title / Logo */}
     <div
       style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        padding: `1.45rem 1.0875rem`
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={gatsbyLogo}
+          alt="Gatsby Garb Logo"
           style={{
-            color: `white`,
-            textDecoration: `none`,
+            borderRadius: '50%',
+            border: '3px solid orange',
+            margin: '0 5px',
+            width: '50px'
           }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+        />
+        <h1 style={{ margin: 0 }}>
+          <NavLink to="/">{siteTitle}</NavLink>
+        </h1>
+      </span>
+      <NavLink to="/blog">Blog</NavLink>
+      <NavLink to="/products">Store</NavLink>
+
+      {/* Shopping Cart Summary */}
+      <div
+        style={{ color: 'white', cursor: 'pointer' }}
+        className="snipcart-summary snipcart-checkout"
+      >
+        <div>
+          <strong>My McCart</strong>
+        </div>
+        <div>
+          <span
+            style={{ fontWeight: 'bold' }}
+            className="snipcart-total-items"
+          />{' '}
+          Items in Cart
+        </div>
+        <div>
+          Total Price{' '}
+          <span
+            style={{ fontWeight: 'bold' }}
+            className="snipcart-total-price"
+          />
+        </div>
+      </div>
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+  siteTitle: PropTypes.string
+};
 
 Header.defaultProps = {
-  siteTitle: ``,
-}
+  siteTitle: ``
+};
 
-export default Header
+export default Header;

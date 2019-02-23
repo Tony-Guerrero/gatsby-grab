@@ -1,6 +1,6 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -24,9 +24,23 @@ const Image = () => (
             }
           }
         }
+
+        # // TG. This is for using gatsby-image plugin
+        iconImage: file(relativePath: { eq: "gatsby-icon.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 590) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     `}
-    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
+    render={data => (
+      <>
+        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+        <Img fluid={data.iconImage.childImageSharp.fluid} />
+      </>
+    )}
   />
-)
-export default Image
+);
+export default Image;
