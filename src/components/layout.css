@@ -628,10 +628,23 @@ pre tt:after {
 }
 .active:hover, .navlink:hover{
   text-decoration: underline
-
 }
 .navlink {
   color:white;
   text-decoration: none;
+}
 
+/* My Netlyfy Identity styles */
+.netlify-identity-menu {
+  list-style: none;
+  color:white;
+}
+.netlify-identity-signup {
+  color: white;
+}
+.netlify-identity-login {
+  color: white;
+}
+.netlify-identity-logout {
+  color: white;
 }
