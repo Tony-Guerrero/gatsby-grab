@@ -638,6 +638,7 @@ pre tt:after {
 .netlify-identity-menu {
   list-style: none;
   color:white;
+  margin: 0;
 }
 .netlify-identity-signup {
   color: white;
